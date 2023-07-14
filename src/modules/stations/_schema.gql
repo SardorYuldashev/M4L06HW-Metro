@@ -20,17 +20,16 @@ type Station {
 	forward: Station
 	backward: Station
 	has_path_link: Boolean
-	# links: [StationLink!]
+	# StationLink: [StationLink!]
 }
 
 input CreateStationInput {
   name: String!
   path_id: ID!
   backward_id: Int
+  forward_id: Int
 }
 
 input UpdateStationInput {
   name: String
-  path_id: ID
-  backward_id: Int
 }

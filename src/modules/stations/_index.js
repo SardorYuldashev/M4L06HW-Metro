@@ -43,9 +43,7 @@ const resolvers = {
     path: (parent) => {
       return showPath({ id: parent.path_id });
     },
-    forward: (parent) => {
-      return showStation({ id: parent.id });
-    },
+
     backward: (parent) => {
       if (!parent.backward_id) {
         return null;
@@ -54,7 +52,15 @@ const resolvers = {
       const result = showStation({ id: parent.backward_id });
 
       return result;
-    }
+    },
+
+    forward: (parent) => {
+      if (!parent.forward_id) {
+        return null;
+      };
+
+      return showStation({ id: parent.forward_id });
+    },
   }
 };
 

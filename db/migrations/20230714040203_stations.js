@@ -7,7 +7,7 @@ export const up = function (knex) {
     table.increments('id');
     table.string('name', 150).notNullable();
     table.integer('path_id').references('id').inTable('paths').onDelete('CASCADE');
-    table.integer('forward_id').notNullable();
+    table.integer('forward_id');
     table.integer('backward_id');
     table.boolean('has_path_link').defaultTo('false');
     table.unique(['name', 'path_id']);
