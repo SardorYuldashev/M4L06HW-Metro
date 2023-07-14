@@ -7,6 +7,9 @@ import { showPath } from './../paths/show-path.js';
 import { addStation } from './add-station.js';
 import { editStation } from './edit-station.js';
 import { removeStation } from './remove-station.js';
+import { listStationLinks } from './list-station-links.js';
+import { showStationLink } from './show-station-link.js';
+import { addStationsLink } from './add-station-links.js';
 
 const typeDefs = readFileSync(join(process.cwd(), 'src', 'modules', 'stations', '_schema.gql'), 'utf8');
 
@@ -17,7 +20,15 @@ const resolvers = {
     },
     station: (_, args) => {
       return showStation({ id: args.id });
-    }
+    },
+
+    stationLinks: () => {
+      return listStationLinks();
+    },
+
+    stationLink: (_, args) => {
+      return showStationLink({ id: args.id });
+    },
   },
   Mutation: {
     createStation: (_, args) => {
@@ -32,6 +43,12 @@ const resolvers = {
     },
     removeStation: (_, args) => {
       return removeStation({ id: args.id });
+    },
+
+    craeateStationLink: (_, args) => {
+      const result = addStationsLink(args.input);
+
+      return result;
     }
   },
   Subscription: {
@@ -61,6 +78,19 @@ const resolvers = {
 
       return showStation({ id: parent.forward_id });
     },
+
+    StationLink: (parent) => {
+      return listStationLinks({ station_id: parent.id });
+    }
+  },
+  StationLink: {
+    station: (parent) => {
+      return showStation({ id: parent.station_id });
+    },
+
+    linked_station: (parent) => {
+      return showStation({ id: parent.linked_id });
+    }
   }
 };
 

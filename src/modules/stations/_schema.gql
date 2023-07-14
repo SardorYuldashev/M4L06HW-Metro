@@ -1,12 +1,17 @@
 type Query {
   stations: [Station!]!
 	station(id: ID!): Station!
+
+  stationLinks: [StationLink!]!
+  stationLink(id: ID!): StationLink!
 }
 
 type Mutation {
   createStation(input: CreateStationInput!): Station!
   updateStation(id: ID!, input: UpdateStationInput!): Station!
   removeStation(id: ID!): Station!
+
+  craeateStationLink(input: CreateStationLinkInput!): StationLink
 }
 
 type Subscription {
@@ -20,7 +25,12 @@ type Station {
 	forward: Station
 	backward: Station
 	has_path_link: Boolean
-	# StationLink: [StationLink!]
+	StationLink: [StationLink!]
+}
+
+type StationLink {
+	station: Station!
+	linked_station: Station!
 }
 
 input CreateStationInput {
@@ -32,4 +42,9 @@ input CreateStationInput {
 
 input UpdateStationInput {
   name: String
+}
+
+input CreateStationLinkInput {
+  station_id: ID!
+  linked_id: ID!
 }
