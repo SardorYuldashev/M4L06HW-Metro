@@ -16,7 +16,7 @@ type Subscription {
 type Metro {
 	id: ID!
 	name: String!
-	# paths: [Path!]!
+	paths: [Path!]!
 }
 
 input CreateMetroInput {

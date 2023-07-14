@@ -6,6 +6,7 @@ import { showMetro } from './show-metro.js';
 import { addMetro } from './add-metro.js';
 import { editMetro } from './edit-metro.js';
 import { removeMetro } from './remove-metro.js';
+import { listPaths } from '../paths/list-paths.js';
 
 const typeDefs = readFileSync(join(process.cwd(), 'src', 'modules', 'metros', '_schema.gql'), 'utf8');
 
@@ -38,6 +39,11 @@ const resolvers = {
       subscribe: () => pubsub.asyncIterator(['METRO_CREATED'])
     }
   },
+  Metro: {
+    paths: (parent) => {
+      return listPaths({ metro_id: parent.id });
+    }
+  }
 };
 
 export default {
