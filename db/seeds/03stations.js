@@ -37,7 +37,7 @@ export const seed = async function (knex) {
       name: "Amir Temur xiyoboni",
       path_id: 1,
       forward_id: 4,
-      // backward_id: ,
+      backward_id: 19,
       has_path_link: true
     },
     {
@@ -53,7 +53,7 @@ export const seed = async function (knex) {
       name: "Paxtakor",
       path_id: 1,
       forward_id: 6,
-      // backward_id: ,
+      backward_id: 25,
       has_path_link: true
     },
     {
@@ -102,7 +102,7 @@ export const seed = async function (knex) {
       path_id: 1,
       forward_id: 12,
       // backward_id: ,
-      has_path_link: true
+      // has_path_link: false
     },
 
     // Yunusobod yo'li
@@ -168,7 +168,7 @@ export const seed = async function (knex) {
       name: "Ming o'rik",
       path_id: 3,
       forward_id: 20,
-      // backward_id: ,
+      backward_id: 28,
       has_path_link: true
     },
 
@@ -259,7 +259,7 @@ export const seed = async function (knex) {
       name: "Do'stlik",
       path_id: 2,
       forward_id: 31,
-      // backward_id: ,
+      backward_id: 32,
       has_path_link: true
     },
 
