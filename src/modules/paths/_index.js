@@ -7,6 +7,7 @@ import { showMetro } from './../metros/show-metro.js';
 import { addPath } from './add-path.js';
 import { editPath } from './edit-path.js';
 import { removePath } from './remove-path.js';
+import { listStations } from './../stations/list-stations.js';
 
 
 const typeDefs = readFileSync(join(process.cwd(), 'src', 'modules', 'paths', '_schema.gql'), 'utf8');
@@ -43,6 +44,9 @@ const resolvers = {
   Path: {
     metro: (parent) => {
       return showMetro({ id: parent.metro_id });
+    },
+    stations: (parent) => {
+      return listStations({ path_id: parent.id });
     }
   }
 };
