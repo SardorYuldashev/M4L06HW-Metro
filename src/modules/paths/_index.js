@@ -8,6 +8,8 @@ import { addPath } from './add-path.js';
 import { editPath } from './edit-path.js';
 import { removePath } from './remove-path.js';
 import { listStations } from './../stations/list-stations.js';
+import { listPathLinks } from './list-path-links.js';
+import { addPathLink } from './add-path-link.js';
 
 
 const typeDefs = readFileSync(join(process.cwd(), 'src', 'modules', 'paths', '_schema.gql'), 'utf8');
@@ -34,6 +36,12 @@ const resolvers = {
     },
     removePath: (_, args) => {
       return removePath({ id: args.id });
+    },
+
+    craeatePathLink: (_, args) => {
+      const result = addPathLink(args.input);
+
+      return result;
     }
   },
   Subscription: {
@@ -47,6 +55,19 @@ const resolvers = {
     },
     stations: (parent) => {
       return listStations({ path_id: parent.id });
+    },
+
+    links: (parent) => {
+      return listPathLinks({ path_id: parent.id });
+    }
+  },
+  PathLink: {
+    path: (parent) => {
+      return showPath({ id: parent.path_id });
+    },
+
+    linked_path: (parent) => {
+      return showPath({ id: parent.linked_id });
     }
   }
 };

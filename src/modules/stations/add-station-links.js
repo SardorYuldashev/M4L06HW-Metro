@@ -2,8 +2,6 @@ import db from '../../db/index.js';
 import { BadRequestError } from '../../shared/errors/index.js';
 
 export const addStationsLink = async (payload) => {
-  console.log(payload);
-
   if (payload.station_id === payload.linked_id) {
     throw new BadRequestError(`Ikkita bir xil ID berilgan`);
   };

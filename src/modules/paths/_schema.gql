@@ -8,13 +8,15 @@ type Path {
 	name: String!
 	metro: Metro!
 	stations: [Station!]!
-	# links: [PathLink!]
+	links: [PathLink!]
 }
 
 type Mutation {
   createPath(input: CreatePathInput!): Path!
   updatePath(id: ID!, input: UpdatePathInput!): Path!
   removePath(id: ID!): Path!
+
+  craeatePathLink(input: CreatePathLinkInput!): PathLink
 }
 
 type Subscription {
@@ -29,4 +31,14 @@ input CreatePathInput {
 input UpdatePathInput {
   name: String
   metro_id: ID
+}
+
+type PathLink {
+	path: Path!
+	linked_path: Path!
+}
+
+input CreatePathLinkInput {
+  path_id: ID!
+  linked_id: ID!
 }
