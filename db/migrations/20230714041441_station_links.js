@@ -3,7 +3,7 @@
  * @returns { Promise<void> }
  */
 export const up = function (knex) {
-  return knex.schema.createTable('station_path_links', (table) => {
+  return knex.schema.createTable('station_links', (table) => {
     table.increments('id');
     table.integer('station_id').references('id').inTable('stations').onDelete('CASCADE');
     table.integer('linked_id').references('id').inTable('stations').onDelete('CASCADE');
@@ -16,5 +16,5 @@ export const up = function (knex) {
  * @returns { Promise<void> }
  */
 export const down = function (knex) {
-  return knex.schema.dropTable('station_path_links');
+  return knex.schema.dropTable('station_links');
 };
